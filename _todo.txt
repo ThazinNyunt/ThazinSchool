@@ -1,0 +1,27 @@
+* Search
+* Category
+* Improve footer
+* add teacher link in course
+* teacher Profile page
+- footer background color
+* Student Register  
+* Student must login to read content, view video
+* Content Edit 
+- Content Delete
+- Section/ Week Edit
+- Admin should be able to add, delete Teachers
+- Admin should be able to see users' list
+- Image Upload
+- Audio/File Upload
+
+
+- Quiz
+- Exercise
+- Exam
+- Digital Certificate
+- Email
+- Rating
+- Comments
+- Payments
+- Reports
+

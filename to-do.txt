@@ -1,0 +1,11 @@
+# Assigned on Dec 15, Finish by Dec 21
+- admin login page
+- services, admin_login(), student_login()
+- header_student.php  need logout button
+- only login user can view video, otherwise, the system will show some marketing message, presudate user to buy
+
+# Plan on Dec 21
+- teacher should be able to edit course info, currently they can only add
+
+# Plan Backlog
+- maybe some fake payment

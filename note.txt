@@ -1,0 +1,19 @@
+SELECT *
+FROM section
+LEFT JOIN week on section.week_id = week.week_id
+where week.course_id = 1
+
+SELECT *
+FROM content
+LEFT JOIN section on content.section_id = section.section_id
+LEFT JOIN week on section.week_id = week.week_id
+where week.course_id = 1
+
+
+SELECT content_id, content.title as content_title, 
+section.section_id, section.title as section_title,
+week.number as week_number, week.description as week_description
+FROM content
+LEFT JOIN section on content.section_id = section.section_id
+LEFT JOIN week on section.week_id = week.week_id
+where week.course_id = 1
