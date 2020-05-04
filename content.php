@@ -3,7 +3,7 @@ include('header_student.php');
 include('services.php');
 $courseId =$_GET['course_id'];
 $contentId = $_GET['content_id'];
-$connection = new mysqli('localhost','root','','thazinschool');
+$connection = connectDb();
 
 $result = $connection->query("SELECT * from content where content_id = " . $contentId);
 $row = $result->fetch_assoc();

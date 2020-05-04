@@ -54,7 +54,8 @@ class Week {
  }
 
  function connectDb() {
-     return new mysqli('localhost','root','','thazinschool');
+     $settings = parse_ini_file("settings.ini");
+     return new mysqli('localhost', $settings['user'], $settings['password'], $settings['dbname']);
  }
 
 function getWeeks($courseId) {
@@ -367,9 +368,30 @@ function enrollCourse($userId,$courseId,$enroll_date){
 function findEnrollCourse($courseId,$userId) {
     $connection = connectDb();
     $select = $connection->query("SELECT * from enroll WHERE course_id='$courseId' And user_id='$userId' ");
-    return count($select->fetch_assoc());
+    $result = $select->fetch_assoc();
+    if(is_array($result)) {
+        return count($result);
+    } else {
+        return 0;
+    }    
 
 }
+
+function isStudentEnrolledInCourse($courseId,$userId) {
+    $connection = connectDb();
+
+    
+    $select = $connection->query("SELECT * from enroll WHERE course_id='$courseId' And user_id='$userId' ");    
+    $result = $select->fetch_assoc();
+    
+
+    if(is_array($result) ) { 
+        return count($result) > 0;
+    } else {
+        return false;
+    }  
+}
+
 
 function findEnrollCourseByUserId($userId) {
     $connection = connectDb();

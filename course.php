@@ -3,7 +3,7 @@ include('header_student.php');
 include('services.php');
 
 $courseId = $_GET['id'];
-$connection = new mysqli('localhost','root','','thazinschool');
+$connection = connectDb();
 
 $result = $connection->query("SELECT * from course where course_id = " . $courseId);
 $row = $result->fetch_assoc();
@@ -12,14 +12,33 @@ $weeks =  getWeeks($courseId);
 
 $teacher = getTeacherName($row['teacher_id']);
 //print_r($teacher);
+
+$userId = $_SESSION['user_id'];
+$isEnrolled = isStudentEnrolledInCourse($courseId,$userId) > 0 ;
  
 ?>
 
 
 <div class="container-fluid bg-white pt-4">
 <div class="container pt-4">
-    <h1 class="card-title"><?php echo $row['course_name'];?></h1>
-    <a href="enroll_course.php?course_id=<?php echo $courseId; ?>"class="btn btn-primary" style="float: right;">Enroll Now</a>
+
+    <div class="row">
+        <div class="col">
+            <h1 class="card-title"><?php echo $row['course_name'];?></h1>
+        </div>
+        <div class="col text-right">
+
+        <?php if($isEnrolled): ?>
+            <h3 class="text-success">Enrolled</h3>
+        <?php else: ?>        
+            <a href="enroll_course.php?course_id=<?php echo $courseId; ?>"class="btn btn-primary" style="float: right;">Enroll Now</a>
+        <?php endif;?>
+
+
+        </div>
+    </div>  
+    
+
     <p><?php echo $row['description'];?></p>
     <p>Teacher Name: <a href="teacher_profile.php?teacher_id=<?php echo $teacher['teacher_id']; ?>"><?php echo $teacher['teacher_name']; ?></a></p>
 
