@@ -29,16 +29,14 @@ if($row['free'] == "false")
     }
 }
 
-
-
-
 ?>
-<div class="container">
+<div class="container bg-white pt-4">
     <div class="card">
         <div class="card-header"><h2><?php echo $row['title'] ?></h2></div>
         <div class="card-body">
             <div>
-            <?php echo $row['body'];?>
+            <p><?php echo $row['body'];?><p>
+            <br>
             </div>
 
             <?php if(strlen($row['video_url']) > 5): ?>
@@ -46,6 +44,8 @@ if($row['free'] == "false")
             <?php endif;?>
         </div>
     </div>
+    <div class="pt-5 pb-5"><br>
+            <a href="course.php?id=<?php echo $courseId; ?>"class="btn btn-primary btn-lg">Back</a>
+            
+    </div>
 </div>
-
-<?php include('footer.php'); ?>

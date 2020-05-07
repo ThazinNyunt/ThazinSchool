@@ -13,28 +13,14 @@ class UserSession {
     }
 }
 
-class Week {
-    var $id;
-    var $number;
-    var $description;
-    var $sections = [];
-    function __construct($id, $number, $description) {
-        $this->id = $id;
-        $this->number = $number;
-        $this->description = $description;
-    }
- }
- 
  class Section {
      var $id;
      var $title;
-     var $week_number;
      var $contents = [];
  
-     function __construct($id, $title, $week_number) {
+     function __construct($id, $title) {
          $this->id = $id;
          $this->title = $title;
-         $this->week_number = $week_number;
      }
  }
 
@@ -58,44 +44,30 @@ class Week {
      return new mysqli('localhost', $settings['user'], $settings['password'], $settings['dbname']);
  }
 
-function getWeeks($courseId) {
+function getSections($courseId) {
     $connection = connectDb();
     $result = $connection->query(
         "SELECT content_id, content.title as content_title, content.free as free,
-        section.section_id, section.title as section_title,
-        week.week_id as week_id,
-        week.number as week_number, week.description as week_description
+        section.section_id, section.title as section_title
         FROM content
         LEFT JOIN section on content.section_id = section.section_id
-        LEFT JOIN week on section.week_id = week.week_id
-        where week.course_id = " . $courseId);
+        where section.course_id = " . $courseId);
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-
-    $weeks = [];
     $sections = [];
     $contents = [];
     
     foreach($rows as $row) {
         //print_r($row);
-        $week_id = $row['week_id']; 
-        $week_number = $row['week_number']; 
-        $weeks[$week_number] = new Week($week_id, $week_number, $row['week_description']);
-    
+        
         $section_id = $row['section_id']; 
         $section_title = $row['section_title']; 
-        $sections[$section_id] = new Section($section_id, $section_title, $week_number);
+        $sections[$section_id] = new Section($section_id, $section_title);
     
         $content_id = $row['content_id'];
         $contents[$content_id] = new Content($content_id, $row['content_title'],$row['free'], $section_id);
     }  
-       
-    foreach($sections as $section) {
-        $week_number = $section->week_number;
-        $week = $weeks[$week_number];
-        $week->sections[] = $section;
-    }
-    
+           
     foreach($contents as $content)
     {
         $section_id = $content->section_id;
@@ -103,36 +75,28 @@ function getWeeks($courseId) {
         $section ->contents[] = $content;
     }
 
-    return $weeks;
+    return $sections;
 }
 
-function getWeeks2($courseId) {
+function getSections2($courseId) {
     $connection = connectDb();
     $result = $connection->query(
         "SELECT content_id, content.title as content_title, content.free as free,
-        section.section_id, section.title as section_title,
-        week.week_id,
-        week.number as week_number, week.description as week_description 
-        FROM week 
-        LEFT JOIN section on week.week_id = section.week_id
+        section.section_id, section.title as section_title
+        FROM section 
         LEFT JOIN content on section.section_id = content.section_id
         WHERE course_id = " . $courseId . " ORDER BY `number` ASC");
     $rows = $result->fetch_all(MYSQLI_ASSOC);
 
-
-    $weeks = [];
     $sections = [];
     $contents = [];
     
     foreach($rows as $row) {
-        $week_id = $row['week_id']; 
-        $week_number = $row['week_number']; 
-        $weeks[$week_number] = new Week($week_id, $week_number, $row['week_description']);
     
         $section_id = $row['section_id']; 
         if($section_id != null) {
             $section_title = $row['section_title']; 
-            $sections[$section_id] = new Section($section_id, $section_title, $week_number);
+            $sections[$section_id] = new Section($section_id, $section_title);
         }
         
         $content_id = $row['content_id'];
@@ -141,13 +105,7 @@ function getWeeks2($courseId) {
         }
         
     }  
-       
-    foreach($sections as $section) {
-        $week_number = $section->week_number;
-        $week = $weeks[$week_number];
-        $week->sections[] = $section;
-    }
-    
+
     foreach($contents as $content)
     {
         $section_id = $content->section_id;
@@ -155,7 +113,7 @@ function getWeeks2($courseId) {
         $section ->contents[] = $content;
     }
 
-    return $weeks;
+    return $sections;
 }
 
 function getCourses() {
@@ -306,6 +264,12 @@ function getCoursesByCategoryId($category_id){
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+function getCourseByCourseId($courseId){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from course where course_id = " . $courseId);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 function getCoursesBySearchTerm($term) {
     $connection = connectDb();
     $result = $connection->query("SELECT * from course where course_name Like '%$term%' or description Like '%$term%' ");
@@ -399,6 +363,14 @@ function findEnrollCourseByUserId($userId) {
     return count($select->fetch_assoc());
 
 }
+
+function getPopularCourse() {
+    $connection = connectDb();
+    $result = $connection->query("SELECT course_id,COUNT(*) FROM enroll GROUP BY course_id ORDER BY COUNT(course_id) DESC LIMIT 2");
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+
 ?>
 
 
