@@ -6,7 +6,7 @@ $courses = getPopularCourse();
 //print_r($courses);
 
 ?>
-<div class="container bg-white mt-3">
+<div class="container bg-white pt-4">
     <div class="row ">
         <div class="col">
             <div id="carouselExampleSlidesOnly" class="carousel slide mt-3" data-ride="carousel">

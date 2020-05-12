@@ -19,13 +19,11 @@
   color: white;
   
 }
-img 
-{}
-/**h1 
+.sub-menu-1
 {
-  font-family: Lucida;
+  display: none;
 }
-**/
+
 
     </style>
   
@@ -54,6 +52,7 @@ img
               <a class="dropdown-item" href="category.php?category_id=2">Management</a>            
             </div>
           </li>
+
           <?php if(isset($_SESSION['user_id'])):?>
             <li class="nav-item">
               <a class="nav-link" href="profile.php"><?php echo $_SESSION['user_name']; ?></a>

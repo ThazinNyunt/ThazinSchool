@@ -7,6 +7,7 @@ $connection = connectDb();
 
 $result = $connection->query("SELECT * from course where course_id = " . $courseId);
 $row = $result->fetch_assoc();
+echo $row['fee'];
 
 $sections =  getSections($courseId);
 
@@ -24,17 +25,31 @@ $teacher = getTeacherName($row['teacher_id']);
                 {
                 $userId = $_SESSION['user_id'];
                 $isEnrolled = isStudentEnrolledInCourse($courseId,$userId) > 0 ;
-                if($isEnrolled)
-                { ?>
-                    <h3 class="text-success">Enrolled</h3>
-        <?php   } 
-                else
+                    if($isEnrolled)
+                    { ?>
+                        <h3 class="text-success">Enrolled</h3>
+        <?php       } 
+                    elseif($row['fee']==0)
+                    {
+                        $isEnrolled = null; ?>
+                        <a href="enroll_course.php?course_id=<?php echo $courseId; ?>" class="btn btn-primary" style="float: right;">Enroll Now</a>
+            <?php   }
+                    else 
+                    {   
+                        $isEnrolled = null; ?>
+                        <a href="payment.php?course_id=<?php echo $courseId; ?>" class="btn btn-primary" style="float: right;"><?php echo $row['fee']; ?> MMK</a>
+            <?php   } 
+                }
+                elseif($row['fee']==0)
                 {
-                    $isEnrolled = null;
-                ?>
-                    <a href="enroll_course.php?course_id=<?php echo $courseId; ?>"class="btn btn-primary" style="float: right;">Enroll Now</a>
+                    $isEnrolled = null; ?>
+                    <a href="enroll_course.php?course_id=<?php echo $courseId; ?>" class="btn btn-primary" style="float: right;">Enroll Now</a>
         <?php   }
-                } ?>
+                else 
+                {   
+                    $isEnrolled = null; ?>
+                    <a href="payment.php?course_id=<?php echo $courseId; ?>" class="btn btn-primary" style="float: right;"><?php echo $row['fee']; ?> MMK</a>
+        <?php   } ?>
         </div>
     </div>  
     
