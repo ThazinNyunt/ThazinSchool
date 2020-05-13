@@ -130,10 +130,10 @@ function getCourse($courseId) {
     return $result->fetch_assoc();
 }
 
-function addNewCourse($coursename,$description,$image_url, $teacher_id){
+function addNewCourse($coursename,$category_id,$description,$image_url, $teacher_id){
     $connection = connectDb();
-    $result = $connection->query("Insert into course (course_name, description, image_url, teacher_id)
-                                    Values('$coursename', '$description', '$image_url', $teacher_id)");
+    $result = $connection->query("Insert into course (course_name, category_id,description, image_url, teacher_id)
+                                    Values('$coursename', '$category_id', '$description', '$image_url', $teacher_id)");
     return $result;
 }
 
@@ -341,6 +341,15 @@ function getQuestion($courseId){
     $result = $connection->query("SELECT * from question where course_id = ". $courseId);
     return $result->fetch_all(MYSQLI_ASSOC);
 }
+
+function addNewQuestion($question_text,$answer1,$answer2,$answer3,$correct_answer){
+    $connection = connectDb();
+    $result = $connection->query("Insert into question (question_text,answer1,answer2,answer3,correct_answer)
+                                    Values('$question_text','$answer1','$answer2','$answer3','$correct_answer')");
+    return $result;
+}
+
+
 
 function insertExamRecord($userId,$courseId,$result,$total_question,$date){
     $connection = connectDb();
