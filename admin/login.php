@@ -15,24 +15,24 @@ if(isset($_POST['btnsave']))
   $password=$_POST['txtpassword'];
   $isSuccessful = adminLogin($email,$password);
 
-  if(isset($isSuccessful))
+  if($isSuccessful == true)
   {
     if($_SESSION['role'] == 'teacher') 
     {
       header("Location: admin_courses.php");
     }
-  }
-  else
-  {
-    header("Location: login.php");
-  }
-   
+  }   
 } 
 ?>
 
 <div class="container-fluid bg-white pt-5">
     <h1 align="center">Login</h1>
     <div class="container bg-white pt-5 pb-5">
+
+      <?php if(isset($_POST['btnsave']) && $isSuccessful == false): ?>
+        <div class="alert alert-warning"> Login is not successful
+        </div> 
+      <?php endif;?>
 
       <form action="login.php" method="post">
         <div class="form-group row">
