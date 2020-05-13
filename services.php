@@ -151,6 +151,12 @@ function deleteCourse($courseId) {
     //print_r($result);
 }
 
+function deleteSection($sectionId) {
+    $connection = connectDb();
+    $query = "DELETE FROM section WHERE section_id='$sectionId'";
+    $result = $connection->query($query);
+}
+
 function getNewCourse($coursename,$description,$image_url){
     $connection = connectDb();
     $result = $connection->query("Insert into course (course_name, description, image_url)
@@ -158,11 +164,10 @@ function getNewCourse($coursename,$description,$image_url){
     return $result;
 }
 
-function insertNewWeek($courseId,$weeknumber,$description){
+function getSection($sectionId) {
     $connection = connectDb();
-    $result = $connection->query("Insert into week (course_id,number, description)
-                                    Values('$courseId','$weeknumber', '$description')");
-    return $result;
+    $result = $connection->query("SELECT * from section where section_id = " . $sectionId);
+    return $result->fetch_assoc();
 }
 
 function insertNewSection($courseId,$title){
