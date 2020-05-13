@@ -428,6 +428,18 @@ function searchCourseByUserId($userId){
     return $result->fetch_assoc();
 }
 
+function getCoursesByTeacherId($teacherId) {
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from course where teacher_id = ". $teacherId);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
+function getCoursesByStudentId($studentId) {
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from enroll left join course on enroll.course_id = course.course_id where user_id = ". $studentId);
+    return $result->fetch_all(MYSQLI_ASSOC);
+}
+
 function savePassingdate($courseId,$userId,$date){
     $connection = connectDb();
     $result = $connection->query("UPDATE enroll SET status = 'passed', passing_date = '$date' where user_id = '$userId' AND course_id = '$courseId'");

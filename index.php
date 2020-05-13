@@ -25,6 +25,7 @@ $courses = getPopularCourse();
     </div>
     <div class="container p-4">
         <h1 align="center"> Popular Courses </h1> 
+        
     </div>
     <div class="row mt-4">
         <?php foreach($courses as $course): ?>
@@ -61,3 +62,7 @@ $courses = getPopularCourse();
             <?php endforeach; ?>
             </div>
     </div>
+                
+<?php
+include('footer_student.php');
+?>

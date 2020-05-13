@@ -90,7 +90,7 @@ $teacher = getTeacherName($row['teacher_id']);
                                         <?php endif; ?>
                                     </td>
                                 </tr>
-<<<<<<< HEAD
+
                             </thead>
                             <tbody>
                                 <tr>
@@ -111,9 +111,7 @@ $teacher = getTeacherName($row['teacher_id']);
                             <?php endforeach;?>   
                             </tbody>
                         </table>  
-=======
- 
->>>>>>> b112c5a19d129cb03b255b479e328f9f65a45947
+
                     <?php endforeach;?>   
                     </table> 
                 </div>

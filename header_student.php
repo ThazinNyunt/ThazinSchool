@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="mockup/bootstrap4/css/bootstrap.min.css">
+    
     <style>
   .centered {
   position: absolute;
@@ -26,7 +27,8 @@
 
 
     </style>
-  
+    <script src="mockup/bootstrap4/js/jquery-3.2.1.slim.min.js" ></script>
+  <script src="mockup/bootstrap4/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="bg-light">
   <nav class="mb-1 navbar navbar-expand-lg navbar-light bg-white">
