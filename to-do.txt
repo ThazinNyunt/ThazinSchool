@@ -1,10 +1,9 @@
 - course dropdown 
-- download certificate
-- teacher login to admin 
-- teacher not include in course
+- teacher login to admin page
+- admin login error
 - delete course, content, section
 - user list
 - teacher list
 - profile
 - not blank form 
-- user and teacher no link
+- user and teacher have no link

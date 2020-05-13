@@ -3,6 +3,8 @@ include('header.php');
 include('../services.php');
 include('form_library.php');
 
+$row = getTeacher();
+
   if(isset($_POST['btnsave']))
   {
 

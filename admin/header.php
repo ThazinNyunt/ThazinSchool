@@ -47,6 +47,9 @@ if($isLoginPage == false) {
                 <li class="nav-item">
                   <a class="nav-link" href="admin_courses.php">Courses</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="admin_newteacher.php">Lecture</a>
+                </li>
               
                 <?php if(isset($_SESSION['user_id'])): ?>
                   <li class="nav-item">

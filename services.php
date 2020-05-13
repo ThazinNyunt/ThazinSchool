@@ -165,10 +165,10 @@ function insertNewWeek($courseId,$weeknumber,$description){
     return $result;
 }
 
-function insertNewSection($weekId,$title){
+function insertNewSection($courseId,$title){
     $connection = connectDb();
-    $result = $connection->query("Insert into section (week_id,title)
-                                    Values('$weekId','$title')");
+    $result = $connection->query("Insert into section (course_id,title)
+                                    Values('$courseId','$title')");
     return $result;
 }
 
@@ -309,6 +309,12 @@ function getTeacherName($teacher_id){
     $connection = connectDb();
     $result = $connection->query("SELECT * from teacher where teacher_Id = ". $teacher_id);
     return $result->fetch_assoc();
+}
+
+function getTeacher(){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from teacher" );
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function findUserByEmail($email) {
