@@ -11,10 +11,12 @@ if(isset($_POST['btnsave']))
     print_r($_POST);
     $title = $_POST['title'];
     $priority = $_POST['priority'];
+    $body = $_POST['body'];
     $type = $_POST['type'];
     $video_url = $_POST['video_url'];
+    $free = $_POST['free'];
 
-    $row = insertNewContent($sectionId,$title,$priority,$type,$video_url);
+    $row = insertNewContent($sectionId,$title,$priority,$body,$type,$video_url,$free);
     if($row)
     {
         header("Location: admin_course_detail.php?course_id=" . $courseId . '&saved'); 
@@ -30,7 +32,8 @@ $fields = [
   new FormField('priority', 'Priority', 'text'),
   new FormField('body','Body','textarea'),
   new FormField('type', 'Type', 'text'),
-  new FormField('video_url', 'Video_url', 'text')
+  new FormField('video_url', 'Video_url', 'text'),
+  new FormField('free', 'Free', 'text')
 
 ];
 $form_title = "Add New Content";

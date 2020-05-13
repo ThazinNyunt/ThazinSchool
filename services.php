@@ -149,10 +149,10 @@ function insertNewSection($weekId,$title){
     return $result;
 }
 
-function insertNewContent($sectionId,$title,$priority,$body,$type,$video_url){
+function insertNewContent($sectionId,$title,$priority,$body,$type,$video_url,$free){
     $connection = connectDb();
-    $result = $connection->query("Insert into content (section_id,title,priority,body,type,video_url)
-                                    Values('$sectionId','$title','$priority','$body','$type','$video_url')");
+    $result = $connection->query("Insert into content (section_id,title,priority,body,type,video_url,free)
+                                    Values('$sectionId','$title','$priority','$body','$type','$video_url','$free')");
     return $result;
 }
 
@@ -270,6 +270,12 @@ function getCourseByCourseId($courseId){
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+function getCourseByCourseId2($courseId){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from course where course_id = " . $courseId);
+    return $result->fetch_assoc();
+}
+
 function getCoursesBySearchTerm($term) {
     $connection = connectDb();
     $result = $connection->query("SELECT * from course where course_name Like '%$term%' or description Like '%$term%' ");
@@ -343,12 +349,8 @@ function findEnrollCourse($courseId,$userId) {
 
 function isStudentEnrolledInCourse($courseId,$userId) {
     $connection = connectDb();
-
-    
     $select = $connection->query("SELECT * from enroll WHERE course_id='$courseId' And user_id='$userId' ");    
     $result = $select->fetch_assoc();
-    
-
     if(is_array($result) ) { 
         return count($result) > 0;
     } else {
@@ -359,7 +361,7 @@ function isStudentEnrolledInCourse($courseId,$userId) {
 
 function findEnrollCourseByUserId($userId) {
     $connection = connectDb();
-    $select = $connection->query("SELECT * from enroll WHERE user_id='$userId'");
+    $select = $connection->query("SELECT * from enroll WHERE user_id=" . $userId);
     return count($select->fetch_assoc());
 
 }
@@ -370,6 +372,23 @@ function getPopularCourse() {
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
+function searchUser($userId){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from users where user_id = ". $userId);
+    return $result->fetch_assoc();
+}
+
+function searchCourseByUserId($userId){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from enroll where user_id = ". $userId);
+    return $result->fetch_assoc();
+}
+
+function savePassingdate($courseId,$userId,$date){
+    $connection = connectDb();
+    $result = $connection->query("UPDATE enroll SET status = 'passed', passing_date = '$date' where user_id = '$userId' AND course_id = '$courseId'");
+    return true;
+}
 
 ?>
 

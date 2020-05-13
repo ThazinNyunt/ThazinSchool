@@ -10,7 +10,7 @@ $sections = getSections2($courseId);
 ?>
 
     
-<div class="container-fluid bg-white">
+<div class="container bg-white mt-2 p-4">
     <div class="container pt-5" >
         <div class="text-center">
             <h1 class="mb-5"><?php echo $row['course_name'];?></h1>
@@ -49,6 +49,7 @@ $sections = getSections2($courseId);
                                 <td>
                                     <a class=" btn btn-sm btn-outline-primary" href="admin_editcontent.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>">Update Content</a>
                                     <a class=" btn btn-sm btn-outline-primary" href="admin_editcontent.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>">Delete</a>
+
                                 </td>
                             </tr>     
                                                                                   

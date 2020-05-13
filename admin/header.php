@@ -38,32 +38,28 @@ if($isLoginPage == false) {
 <body class="bg-light">
         <nav class="navbar navbar-expand-lg navbar-light bg-white ">
             <a class="navbar-brand" href="index.php">Thazin School</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
             <?php if($isLoginPage == false): ?>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="float: right;">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="admin_courses.php">Home</a>
                 </li>
-                
-                
-              <form class="form-inline my-3 my-lg-0">
-                <?php 
-                if(isset($_SESSION['user_id']))
-                {
-                  echo $_SESSION['user_name'];
-                  echo '<a class="btn btn-primary my-2 my-sm-0 ml-4" type="button" href="" >Profile</a>';
-                  echo '<a class="btn btn-primary my-2 my-sm-0 ml-4" type="button" href="logout.php" >Logout</a>';
-                }
-                else {
-                  //header("Location: login.php");
-                }
-                
-                ?>
-              </form>
+                <li class="nav-item">
+                  <a class="nav-link" href="admin_courses.php">Courses</a>
+                </li>
+              
+                <?php if(isset($_SESSION['user_id'])): ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="admin_courses.php"><?php echo $_SESSION['user_name'];?></a>
+                    
+                  </li>
+                  <li>
+                  <a class="nav-link" href="logout.php">Logout</a>
+                  </li>
+                <?php endif; ?>
+                </ul>
+              
             </div>
               <?php endif;?>
           </nav>
+          

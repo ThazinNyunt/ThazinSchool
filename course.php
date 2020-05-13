@@ -7,7 +7,6 @@ $connection = connectDb();
 
 $result = $connection->query("SELECT * from course where course_id = " . $courseId);
 $row = $result->fetch_assoc();
-echo $row['fee'];
 
 $sections =  getSections($courseId);
 
@@ -83,8 +82,11 @@ $teacher = getTeacherName($row['teacher_id']);
                                             <span class="badge badge-success">Free</span>
                                              <?php endif; ?>
                                             </a>
+                                        <?php elseif(($content->free) == "true"): ?>
+                                            <a class="nav-link active" href="content.php?course_id=<?php echo $courseId; ?>&content_id=<?php echo $content->id; ?>"><?php echo $content->title; ?>
+                                            <span class="badge badge-success">Free</span>
                                         <?php else: ?>
-                                            <p><?php echo $content->title; ?></p>
+                                            <p>	&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $content->title; ?></p>
                                         <?php endif; ?>
                                     </td>
                                 </tr>

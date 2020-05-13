@@ -40,7 +40,7 @@ if(!isset($_SESSION['user_id']))
             <?php for($i=1; $i<5; $i++): ?>
                     <div>
                         <input type="radio" 
-                            name="question[<?php echo $row['question_id'];?>][user_answer]" value="<?php echo $i; ?>">
+                            name="question[<?php echo $row['question_id'];?>][user_answer]" value="<?php echo $i; ?>" required="required">
                         <?php echo $answers[$i]; ?>
                     </div>      
             <?php endfor;?>           
