@@ -5,11 +5,14 @@ include('form_library.php');
 
   if(isset($_POST['btnsave']))
   {
+
+    print_r($_POST);
     $coursename=$_POST['coursename'];
     $description=$_POST['description'];
     $image_url=$_POST['image_url'];
+    $teacherId = $_POST['teacher_id'];
 
-    $row = getNewCourse($coursename,$description,$image_url);
+    $row = addNewCourse($coursename,$description,$image_url, $teacherId);
     if($row)
     {
       echo "<script>
@@ -25,10 +28,21 @@ include('form_library.php');
 
 //$field_names = ['coursename', 'description', 'image_url', 'note'];
 
+$teacherRows = getTeachers();
+//print_r($teachers);
+
+$teacherOptions = [];
+foreach($teacherRows as $teacherRow) {
+  $teacherOptions[] = new Option($teacherRow['teacher_id'], $teacherRow['teacher_name']);
+}
+
+
 $fields = [
   new FormField('coursename', 'Course Name', 'text'),
   new FormField('description', 'Description', 'textarea'),
-  new FormField('image_url', 'Image url', 'text')
+  new FormField('image_url', 'Image url', 'text'),
+  new FormField('teacher_id', 'Teacher', 'select', null, $teacherOptions)
+
 ];
 $form_title = "Add New Course";
 $form_action = "admin_newcourse.php";

@@ -28,13 +28,13 @@ include('form_library.php');
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email: </label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="email" placeholder="Enter Your Email">
+                <input type="email" class="form-control" name="email" placeholder="Enter Your Email" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Password: </label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="password" placeholder="Enter Password">
+                <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
             </div>
         </div>
 

@@ -22,14 +22,20 @@ $row = insertExamRecord($_POST['user_id'],$_POST['course_id'],$result,$total_que
     <br>
     <p>Your Result: <?php echo $result; ?>/<?php echo $total_question;?></p>
     <br>
-    <?php if($percentage>=50): ?>
-        <h1>Pass</h1>
-        <a href='certifcate.php' class='btn btn-primary'>Download Certificate</a>
-    <?php endif; ?>
+    <?php if($percentage>=50) 
+        {
+            $update = savePassingdate($_POST['course_id'],$_POST['user_id'],$date);
+        ?>
+        <h1>You Pass the Exam</h1>
+        <a href="certificate.php?course_id=<?php echo $_POST['course_id']; ?>&user_id=<?php echo $_POST['user_id']; ?>" class='btn btn-primary'>Download Certificate</a>
+<?php   } ?>
     <?php if($percentage<50): ?>
-        <h1>Fail</h1>
+        <h1>You Fail the Exam</h1>
         <a href="questions.php?course_id=<?php echo $_POST['course_id']; ?>" class="btn btn-primary">Try Again</a>
     <?php endif; ?>
+
+    <br><br><br><br>
+        <a href="index.php">go home</a>
     
     
 

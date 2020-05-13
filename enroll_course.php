@@ -15,6 +15,7 @@ $enroll_date =date('Y-m-d');
 $search = findEnrollCourse($courseId,$userId);
 
 ?>
+<div class="container bg-white pt-4">
 <div align="center">
     <?php if($search >0):?>
         <h1>You have already enroll this course</h1>
@@ -27,4 +28,5 @@ $search = findEnrollCourse($courseId,$userId);
         <h1>Enrollment Completed</h1>
         <a href="course.php?id=<?php echo $courseId; ?>"class="btn btn-primary">Start Course</a>
         <?php endif;?>
+</div>
 </div>

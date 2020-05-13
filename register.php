@@ -39,19 +39,19 @@ if(isset($_POST['btnsave']))
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">User Name: </label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="txtusername" placeholder="Enter User Name">
+                <input type="text" class="form-control" name="txtusername" placeholder="Enter User Name" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Email: </label>
             <div class="col-sm-10">
-                <input type="email" class="form-control" name="txtemail" placeholder="Enter Your Email">
+                <input type="email" class="form-control" name="txtemail" placeholder="Enter Your Email" required>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Password: </label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="txtpassword" placeholder="Enter Password">
+                <input type="password" class="form-control" name="txtpassword" placeholder="Enter Password" required>
             </div>
         </div>
 
