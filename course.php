@@ -90,7 +90,30 @@ $teacher = getTeacherName($row['teacher_id']);
                                         <?php endif; ?>
                                     </td>
                                 </tr>
+<<<<<<< HEAD
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <?php foreach($section->contents as $content): ?>
+                                    <td>
+                                        <a class="nav-link active" href="content.php?course_id=<?php echo $content->id; ?>&content_id=<?php echo $content->id; ?>"><?php echo $content->title; ?>
+                                        <?php
+                                            //$_SESSION['free'] = $content->free;
+                                            if(($content->free) == "true")
+                                            {
+                                                ?><span class="badge badge-success">Free</span><?php
+                                            }
+                                            //echo $_SESSION['free'];
+                                        ?>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach;?>   
+                            </tbody>
+                        </table>  
+=======
  
+>>>>>>> b112c5a19d129cb03b255b479e328f9f65a45947
                     <?php endforeach;?>   
                     </table> 
                 </div>

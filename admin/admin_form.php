@@ -20,6 +20,17 @@
             <?php if($field->type == 'textarea'): ?>
                 <textarea class='form-control' name="<?php echo $field->name; ?>" 
                 placeholder="Enter <?php echo $field->label;?>" required><?php if($field->value!=null){echo $field->value;} ?></textarea>
+
+            <?php elseif($field->type == 'select'): ?>
+                <select class='form-control' name="<?php echo $field->name; ?>" 
+                placeholder="Enter <?php echo $field->label;?>" required><?php if($field->value!=null){echo $field->value;} ?>
+                  <?php foreach($field->options as $option): ?>
+                    <option value="<?php echo $option->key ?>">
+                      <?php echo $option->value; ?> 
+                    </option>
+                  <?php endforeach; ?>
+                </select>    
+            
             <?php else: ?>
             <input type="text" class="form-control" name="<?php echo $field->name;?>" 
                 <?php if($field->value!=null): ?> 

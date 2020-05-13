@@ -44,6 +44,8 @@ class UserSession {
      return new mysqli('localhost', $settings['user'], $settings['password'], $settings['dbname']);
  }
 
+ 
+
 function getSections($courseId) {
     $connection = connectDb();
     $result = $connection->query(
@@ -126,6 +128,13 @@ function getCourse($courseId) {
     $connection = connectDb();
     $result = $connection->query("SELECT * from course where course_id = " . $courseId);
     return $result->fetch_assoc();
+}
+
+function addNewCourse($coursename,$description,$image_url, $teacher_id){
+    $connection = connectDb();
+    $result = $connection->query("Insert into course (course_name, description, image_url, teacher_id)
+                                    Values('$coursename', '$description', '$image_url', $teacher_id)");
+    return $result;
 }
 
 function getNewCourse($coursename,$description,$image_url){
@@ -319,6 +328,12 @@ function registerTeacher($teacher_name,$phone_number,$email,$current_job,$addres
     $result = $connection->query("Insert into teacher (teacher_name,phone_number,email,current_job,address,experiences)
                                         Values('$teacher_name','$phone_number','$email','$current_job','$address','$experiences')");
     return true;
+}
+
+function getTeachers(){
+    $connection = connectDb();
+    $result = $connection->query("SELECT * from teacher");
+    return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function getQuestion($courseId){
