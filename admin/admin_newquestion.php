@@ -23,7 +23,13 @@ if(isset($_POST['btnsave']))
     }*/
 }
 
-$questionsOptions=array("1","2","3","4");
+$questionsOptions= [
+  new Option("1", "Answer 1"),
+  new Option("2", "Answer 2"),
+  new Option("3", "Answer 3"),
+  new Option("4", "Answer 4")
+
+];
 
 $fields = [
 
@@ -31,6 +37,7 @@ $fields = [
   new FormField('answer1', 'Answer 1', 'text'),
   new FormField('answer1','Answer 2','text'),
   new FormField('answer1', 'Answer 3', 'text'),
+  new FormField('answer1', 'Answer 4', 'text'),
   new FormField('correct_answer', 'Correct Answer', 'select', null, $questionsOptions)
  
 
