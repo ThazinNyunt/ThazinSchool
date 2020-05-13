@@ -14,7 +14,7 @@ if(isset($_POST['btnsave']))
   $email=$_POST['txtemail'];
   $password=$_POST['txtpassword'];
   $isSuccessful = adminLogin($email,$password);
-
+ 
   if(isset($isSuccessful))
   {
     if($_SESSION['role'] == 'teacher') 
