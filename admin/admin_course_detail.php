@@ -16,7 +16,7 @@ $sections = getSections2($courseId);
             <h1 class="mb-5"><?php echo $row['course_name'];?></h1>
         </div>
         <div class="text-left mt-4">      
-            <a href="admin_course_question.php?course_id=<?php echo $courseId;?>" class="btn btn-primary">Questions</a>
+            <a href="admin_question.php?course_id=<?php echo $courseId;?>" class="btn btn-primary">Questions</a>
         </div>
         <div class="text-right mb-4">
             <a href="admin_newsection.php?course_id=<?php echo $courseId;?>" class="btn btn-primary">Create Section</a>
@@ -33,6 +33,7 @@ $sections = getSections2($courseId);
                     </div>
                     <div class="col text-right">
                     <a class=" btn btn-sm btn-outline-primary" href="admin_editsection.php?course_id=<?php echo $courseId?>&section_id=<?php echo $sectionId; ?>">Edit Section Title</a>
+                    <a class=" btn btn-sm btn-outline-primary" href="admin_editsection.php?course_id=<?php echo $courseId?>&section_id=<?php echo $sectionId; ?>">Delete Section</a>
                     </div>
                 </div>
 

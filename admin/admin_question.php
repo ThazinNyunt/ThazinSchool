@@ -11,6 +11,10 @@ $rows = getQuestion($courseId);
 <div class="container bg-white">
 
 <h1 align="center">Questions</h1>
+Total Question: <?php echo count($rows); ?>
+<a href="admin_newquestion.php?course_id=<?php echo $courseId;?>" class="btn btn-primary" style="float: right;">Add New Questions</a>
+<br>
+<br>
 <?php foreach($rows as $row): ?>
     <div class="custom-control custom-checkbox mb-3 pr-4">
         Q: <b><?php echo $row['question_text'];?></b><br>
@@ -29,9 +33,10 @@ $rows = getQuestion($courseId);
             <?php else: ?>
                 <b>&nbsp;<?php echo $answers[$i]; ?>&nbsp;</b>                
             <?php endif;?>    
-        <?php endfor;?>           
+        <?php endfor;?>    
+        <button>ad</button>       
     </div>
     <br>
 <?php endforeach; ?>
-Total Question: <?php echo count($rows); ?>
+
 </div>

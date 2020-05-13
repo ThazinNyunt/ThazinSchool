@@ -14,7 +14,7 @@ if(isset($_POST['btnsave']))
     $experiences = $_POST['experiences'];
 
 
-    $row = insertN($teacher_name,$phone_number,$email,$current_job,$address,$experiences);
+    $row = registerTeacher($teacher_name,$phone_number,$email,$current_job,$address,$experiences);
     if($row)
     {
         echo "<script>
