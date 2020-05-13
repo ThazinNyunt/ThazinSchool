@@ -26,8 +26,37 @@ include('../services.php');
     $link = 'admin_course_detail.php?course_id=';
     $key_for_id = 'course_id';
 
-    include('admin_table.php');
+    //include('admin_table.php');
     ?>
+
+    <table class="table table-hover">
+        <thead>
+            <th>Course Name</th>            
+            <th class="text-right">Action</th>
+        </thead>
+        <tbody>
+            <?php foreach($rows as $row): ?>
+            <tr>
+                <td>
+                    <?php echo $row['course_name']; ?>
+                </td>
+                
+                <td class="text-right">
+                    <a href="<?php echo "admin_course_detail.php?course_id=". $row[$key_for_id]; ?>" class="btn btn-sm btn-outline-primary">
+                    View Details
+                    </a>
+                    <a href="<?php echo "admin_course_enrollments.php?course_id=". $row[$key_for_id]; ?>" class="btn btn-sm btn-outline-primary">
+                    Enrollments
+                    </a>
+
+                    <a href="<?php echo "admin_course_delete.php?course_id=". $row[$key_for_id]; ?>" class="btn btn-sm btn-outline-danger">
+                    Delete
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
     
     </div>
 </div>
