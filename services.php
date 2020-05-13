@@ -130,11 +130,25 @@ function getCourse($courseId) {
     return $result->fetch_assoc();
 }
 
+function getCourseEnrollments($courseId) {
+    $connection = connectDb();
+    $result = $connection->query("SELECT * FROM enroll LEFT JOIN users on enroll.user_id = users.user_id where enroll.course_id = " . $courseId);
+    return $result->fetch_all(MYSQLI_ASSOC); 
+}
+
 function addNewCourse($coursename,$description,$image_url, $teacher_id){
     $connection = connectDb();
     $result = $connection->query("Insert into course (course_name, description, image_url, teacher_id)
                                     Values('$coursename', '$description', '$image_url', $teacher_id)");
     return $result;
+}
+
+function deleteCourse($courseId) {
+    $connection = connectDb();
+    $query = "DELETE FROM course WHERE course_id='$courseId'";
+    //print_r($query);
+    $result = $connection->query($query);
+    //print_r($result);
 }
 
 function getNewCourse($coursename,$description,$image_url){
