@@ -68,16 +68,18 @@ $isEnrolled = isStudentEnrolledInCourse($courseId,$userId) > 0 ;
                             <tbody>
                                 <tr>
                                     <?php foreach($section->contents as $content): ?>
-                                    <td><a class="nav-link active" href="content.php?course_id=<?php echo $content->id; ?>&content_id=<?php echo $content->id; ?>"><?php echo $content->title; ?>
-                                    <?php
-                                        //$_SESSION['free'] = $content->free;
-                                        if(($content->free) == "true")
-                                        {
-                                            ?><span class="badge badge-success">Free</span><?php
-                                        }
-                                        //echo $_SESSION['free'];
-                                    ?>
-                                    </a></td>
+                                    <td>
+                                        <a class="nav-link active" href="content.php?course_id=<?php echo $content->id; ?>&content_id=<?php echo $content->id; ?>"><?php echo $content->title; ?>
+                                        <?php
+                                            //$_SESSION['free'] = $content->free;
+                                            if(($content->free) == "true")
+                                            {
+                                                ?><span class="badge badge-success">Free</span><?php
+                                            }
+                                            //echo $_SESSION['free'];
+                                        ?>
+                                        </a>
+                                    </td>
                                 </tr>
                             <?php endforeach;?>   
                             </tbody>

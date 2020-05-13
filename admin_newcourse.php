@@ -28,7 +28,8 @@ include('form_library.php');
 $fields = [
   new FormField('coursename', 'Course Name', 'text'),
   new FormField('description', 'Description', 'textarea'),
-  new FormField('image_url', 'Image url', 'text')
+  new FormField('image_url', 'Image url', 'text'),
+  new FormField('teacher_id', 'Teacher', 'text')
 ];
 $form_title = "Add New Course";
 $form_action = "admin_newcourse.php";
