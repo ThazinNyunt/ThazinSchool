@@ -4,7 +4,6 @@ include('../services.php');
 include('form_library.php');
 
 $row = getTeacher();
-print_r($row);
 
   if(isset($_POST['btnsave']))
   {

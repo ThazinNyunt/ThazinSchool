@@ -3,8 +3,7 @@
 include('header.php'); 
 include('../services.php');
 
-$row = getTeacher();
-print_r($row);
+
 ?>
 
 <div class="container-fluid bg-white mt-2 p-4">
