@@ -15,7 +15,7 @@ $sections = getSections2($courseId);
         <div class="text-center">
             <h1 class="mb-5"><?php echo $row['course_name'];?></h1>
         </div>
-        <div class="text-left mt-4">      
+        <div class="text-left ">      
             <a href="admin_question.php?course_id=<?php echo $courseId;?>" class="btn btn-primary">Questions</a>
         </div>
         <div class="text-right mb-4">
@@ -29,11 +29,11 @@ $sections = getSections2($courseId);
             <div class="card-header" id="heading-<?php echo $section->id;?>">
                 <div class="row">
                     <div class="col">
-                        <a href="kdh"><?php echo $section->title; ?></a>
+                        <p><?php echo $section->title; ?></p>
                     </div>
                     <div class="col text-right">
                     <a class=" btn btn-sm btn-outline-primary" href="admin_editsection.php?course_id=<?php echo $courseId?>&section_id=<?php echo $sectionId; ?>">Edit Section Title</a>
-                    <a class=" btn btn-sm btn-outline-primary" href="admin_editsection.php?course_id=<?php echo $courseId?>&section_id=<?php echo $sectionId; ?>">Delete Section</a>
+                    <a class=" btn btn-sm btn-outline-danger" href="admin_section_delete.php?course_id=<?php echo $courseId?>&section_id=<?php echo $sectionId; ?>">Delete Section</a>
                     </div>
                 </div>
 
@@ -46,10 +46,10 @@ $sections = getSections2($courseId);
                     <table class="table table-borderless">
                         <?php foreach($section->contents as $content): ?>  
                             <tr>                                    
-                                <td><a class="nav-link active" href="admin_editcontent.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>"><?php echo $content->title; ?></a></td>
+                                <td><p><?php echo $content->title; ?></p></td>
                                 <td>
                                     <a class=" btn btn-sm btn-outline-primary" href="admin_editcontent.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>">Update Content</a>
-                                    <a class=" btn btn-sm btn-outline-primary" href="admin_editcontent.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>">Delete</a>
+                                    <a class=" btn btn-sm btn-outline-danger" href="admin_content_delete.php?course_id=<?php echo $courseId?>&content_id=<?php echo $content->id; ?>">Delete</a>
 
                                 </td>
                             </tr>     
